@@ -8,6 +8,7 @@ import {
   clearTodoInput,
   getTodoInputItems,
   validateTodoInput,
+  forbidSubmitWithEnter,
 } from "./todoInput";
 
 const todoInputWrapper = document.querySelector(".todo-input-wrapper");
@@ -18,9 +19,12 @@ export const todoSelect = document.querySelector(".todo-select");
 document.addEventListener("DOMContentLoaded", onDOMLoaded);
 
 todoInput.addEventListener("input", () => validateTodoInput(todoInputWrapper));
+
 todoButton.addEventListener("click", addTodo);
 todoButton.addEventListener("click", disableSelector); // disable selector task
 todoSelect.addEventListener("change", filterTodos);
+
+todoInput.addEventListener("keypress", forbidSubmitWithEnter); //forbid form submit with enter key, when input value is less than 3 characters
 
 function onDOMLoaded() {
   renderTodosFromSStorage();
@@ -52,13 +56,7 @@ function addTodo(event) {
 
 function filterTodos(e) {
   const todoItems = todoList.childNodes;
-  const todoExists = getTodosFromSStorage();
   filterTodoItems(todoItems, e.target.value);
-
-  //
-  !todoItems.length || !todoExists
-    ? todoSelect.setAttribute("disabled", true)
-    : todoSelect.removeAttribute("disabled");
 }
 
 // TODO fix bugs:

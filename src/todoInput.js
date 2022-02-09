@@ -23,6 +23,15 @@ export function validateTodoInput(todoInputWrapper) {
   }
 }
 
+// forbid form submit with enter key, when input value is less than 3 characters
+export function forbidSubmitWithEnter(event) {
+  console.log("forbidSubmitWithEnter", "works");
+  if (event.keyCode === 13 && event.target.value.length < 3) {
+    event.preventDefault();
+    return false;
+  }
+}
+
 export function clearTodoInput(todoInputWrapper) {
   const { todoInput, todoHelper, todoButton } =
     getTodoInputItems(todoInputWrapper);
