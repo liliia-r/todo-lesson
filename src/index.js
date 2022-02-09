@@ -9,6 +9,8 @@ import {
   getTodoInputItems,
   validateTodoInput,
   forbidSubmitWithEnter,
+  inputInFocus,
+  inputNotInFocus,
 } from "./todoInput";
 
 const todoInputWrapper = document.querySelector(".todo-input-wrapper");
@@ -19,12 +21,15 @@ export const todoSelect = document.querySelector(".todo-select");
 document.addEventListener("DOMContentLoaded", onDOMLoaded);
 
 todoInput.addEventListener("input", () => validateTodoInput(todoInputWrapper));
+todoInput.addEventListener("focus", () => inputInFocus(todoInputWrapper));
+todoInput.addEventListener("blur", () => inputNotInFocus(todoInputWrapper));
+todoInput.addEventListener("input", () => inputInFocus(todoInputWrapper));
 
 todoButton.addEventListener("click", addTodo);
-todoButton.addEventListener("click", disableSelector); // disable selector task
+todoButton.addEventListener("click", disableSelector);
 todoSelect.addEventListener("change", filterTodos);
 
-todoInput.addEventListener("keypress", forbidSubmitWithEnter); //forbid form submit with enter key, when input value is less than 3 characters
+todoInput.addEventListener("keypress", forbidSubmitWithEnter);
 
 function onDOMLoaded() {
   renderTodosFromSStorage();
@@ -61,6 +66,6 @@ function filterTodos(e) {
 
 // TODO fix bugs:
 // 1. select should be disabled when no option is displayed +
-// 2. forbid form submit with enter key, when input value is less than 3 characters
+// 2. forbid form submit with enter key, when input value is less than 3 characters +
 // 3. when todoInput is not in focus, helper text should not be displayed
 // 4. save to session storage todo state: completed, not completed - and update it

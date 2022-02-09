@@ -10,16 +10,29 @@ export function getTodoInputItems(todoInputWrapper) {
   };
 }
 
+// when todoInput is not in focus, helper text should not be displayed
+export function inputInFocus(todoInputWrapper) {
+  const { todoInput, todoHelper } = getTodoInputItems(todoInputWrapper);
+
+  todoInput.value.length >= 3
+    ? todoHelper.classList.remove("todo-helper_visible")
+    : todoHelper.classList.add("todo-helper_visible");
+}
+
+export function inputNotInFocus(todoInputWrapper) {
+  const { todoHelper } = getTodoInputItems(todoInputWrapper);
+
+  todoHelper.classList.remove("todo-helper_visible");
+}
+
+// validation
 export function validateTodoInput(todoInputWrapper) {
-  const { todoInput, todoHelper, todoButton } =
-    getTodoInputItems(todoInputWrapper);
+  const { todoInput, todoButton } = getTodoInputItems(todoInputWrapper);
 
   if (todoInput.value.length >= 3) {
     todoButton.classList.remove("todo-button_disabled");
-    todoHelper.classList.remove("todo-helper_visible");
   } else {
     todoButton.classList.add("todo-button_disabled");
-    todoHelper.classList.add("todo-helper_visible");
   }
 }
 
