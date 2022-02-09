@@ -1,4 +1,7 @@
-import { removeTodoFromSStorage } from "./sessionStorage";
+import { removeTodoFromSStorage, getTodosFromSStorage } from "./sessionStorage";
+import { disableSelector } from "./filterTodoItems";
+
+const todoExists = getTodosFromSStorage();
 
 export const getTodoItem = (text) => {
   // Create Todo Item
@@ -34,6 +37,9 @@ function removeTodoItem(todoItem) {
     todoItem.classList.add("todo-item_fall");
     todoItem.addEventListener("transitionend", function () {
       removeTodoFromSStorage(todoItem);
+
+      if (todoExists.length === 0) disableSelector(); // disable selector task
+
       todoItem.remove();
     });
   };

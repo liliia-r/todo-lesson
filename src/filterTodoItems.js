@@ -1,3 +1,6 @@
+import { getTodosFromSStorage } from "./sessionStorage";
+import { todoSelect } from "./index.js";
+
 const SELECT_OPTIONS = {
   COMPLETED: "completed",
   UNCOMPLETED: "uncompleted",
@@ -28,5 +31,16 @@ export function filterTodoItems(todoItems, optionValue) {
           return;
       }
     });
+  }
+}
+
+// The selector should be disabled when no todos are displayed
+export function disableSelector() {
+  const todoExists = getTodosFromSStorage();
+
+  if (!todoExists.length) {
+    todoSelect.setAttribute("disabled", "disabled");
+  } else {
+    todoSelect.removeAttribute("disabled");
   }
 }
