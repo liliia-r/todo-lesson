@@ -41,9 +41,12 @@ function renderTodosFromSStorage() {
   let todos = getTodosFromSStorage();
 
   todos.forEach((todoValue) => {
-    const todoItem = getTodoItem(todoValue);
+    const todoItem = getTodoItem(todoValue.whatToDo);
 
     // Add todo item to list
+    if (todoValue.state === "completed") {
+      todoItem.classList.add("todo-item_completed");
+    }
     todoList.appendChild(todoItem);
   });
 }
@@ -67,5 +70,5 @@ function filterTodos(e) {
 // TODO fix bugs:
 // 1. select should be disabled when no option is displayed +
 // 2. forbid form submit with enter key, when input value is less than 3 characters +
-// 3. when todoInput is not in focus, helper text should not be displayed
-// 4. save to session storage todo state: completed, not completed - and update it
+// 3. when todoInput is not in focus, helper text should not be displayed +
+// 4. save to session storage todo state: completed, not completed - and update it +

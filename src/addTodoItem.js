@@ -1,4 +1,8 @@
-import { removeTodoFromSStorage, getTodosFromSStorage } from "./sessionStorage";
+import {
+  removeTodoFromSStorage,
+  getTodosFromSStorage,
+  changeTodoState,
+} from "./sessionStorage";
 import { disableSelector } from "./filterTodoItems";
 
 const todoExists = getTodosFromSStorage();
@@ -49,5 +53,6 @@ function toggleCheckButton(todoItem) {
   return (e) => {
     e.preventDefault();
     todoItem.classList.toggle("todo-item_completed");
+    changeTodoState(todoItem);
   };
 }
