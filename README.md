@@ -1,3 +1,5 @@
+# Deploy: https://liliia-r.github.io/todo-lesson/
+
 # DOM Manipulation and JS project setup
 
 1. Inspiration for a project: [Beginner Vanilla Javascript Project Tutorial](https://youtu.be/Ttf3CEsEwMQ)
