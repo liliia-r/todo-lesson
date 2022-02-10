@@ -1,5 +1,4 @@
 .vscode/
 node_modules/
 .eslintcache
-app/
 .DS_Store
